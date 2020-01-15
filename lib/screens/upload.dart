@@ -1,12 +1,10 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:nishant/modal/User.dart';
 import 'package:nishant/modal/details.dart';
@@ -32,6 +30,7 @@ TextEditingController descriptionController=TextEditingController();
 TextEditingController locationController=TextEditingController();
 TextEditingController addressController=TextEditingController();
 TextEditingController contactController=TextEditingController();
+TextEditingController dateController=TextEditingController();
   List<Asset> images = List<Asset>();
   Asset asset;
   String _error;
@@ -46,6 +45,11 @@ TextEditingController contactController=TextEditingController();
   int _sec=0;
 bool ngoOption=false;
   String dropdownValue = 'Feed';
+  bool titleValid=true;
+  bool descriptionValid=true;
+  bool addressValid=true;
+  bool contactValid=true;
+  bool dateValid=true;
   var now = new DateTime.now();
 List<String> urls=new List();
 String url;
@@ -106,8 +110,6 @@ void saveImagetofirebase(){
     return  (await uploadTask.onComplete).ref.getDownloadURL();
      
 }
- 
-
   void uploadtofirebase() async{
              FirebaseUser currentUser=await  _auth.getCurrentUser();
     if(locationController.text.length<1){
@@ -134,6 +136,19 @@ void saveImagetofirebase(){
         'name':name,
         'userPic':dp
       };
+      var data2={
+        "title":_title,
+        "description":_description,
+        "date":DateFormat("dd-MM-yyyy").format(now),
+        "time":timestamp,
+        "images":urls,
+        "location":locationController.text,
+        'name':name,
+        'userPic':dp,
+        'address':addressController.text,
+        'timeOfevent':dateController.text,
+        'phone':contactController.text
+      };
 
           String fileName = DateTime.now().millisecondsSinceEpoch.toString();
           String collec;
@@ -150,12 +165,15 @@ databaseReference.collection("data").document(fileName).setData(data).whenComple
          });
 databaseReference.collection("posts").document(currentUser.uid).collection("usersPosts").document(fileName).setData(data);});
           }else{
-databaseReference.collection("ngo").document(fileName).setData(data).whenComplete((){
+databaseReference.collection("ngo").document(fileName).setData(data2).whenComplete((){
 
          _showDialog("successfully ","Success");
           }).then((val){
             titleController.clear();
          descriptionController.clear();
+         dateController.clear();
+         addressController.clear();
+         contactController.clear();
          setState(() {
            images=[];
            isLoading=false;
@@ -193,9 +211,7 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
   }
 
   Future<void> loadAssets() async {
-
     String error;
-
     try {
       resultList = await MultiImagePicker.pickImages(
         maxImages: 5,
@@ -204,7 +220,6 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
       error = "this is error";
     }
     if (!mounted) return;
-
     setState(() {
       images = resultList;
       resultList=resultList;
@@ -214,8 +229,6 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
   
   @override
   Widget build(BuildContext context) {
-    
-    print(dropdownValue);
      final user=Provider.of<User>(context);
    final details=Provider.of<List<Details>>(context);
     details.forEach((val)
@@ -247,7 +260,9 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
                                       _title=_title;
                                     });
                                   },
-                                  decoration: textInputDecoration.copyWith(hintText: 'Title'),
+                                  decoration: textInputDecoration.copyWith(hintText: 'Title').copyWith(                      
+                                    errorText:titleValid?null:"Please enter a title for your blog",
+),
                       ),
                     ),
                      Padding(
@@ -265,7 +280,8 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
                                                   _description=_description;
                                                 });
                                                   },
-                                  decoration: textInputDecoration.copyWith(hintText: 'Description'),
+                                  decoration: textInputDecoration.copyWith(hintText: 'Description').copyWith(                      
+                                    errorText:descriptionValid?null:"Description should be of minimum 100 characters",),
                                 ),
                                           )
                                                 ),
@@ -353,7 +369,8 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
                                                       contact=contact;
                                                     });
                                                   },
-                                                  decoration:textInputDecoration.copyWith(hintText: 'Contact'),
+                                                  decoration:textInputDecoration.copyWith(hintText: 'Contact').copyWith(                      
+                                    errorText:contactValid?null:"Please enter contact details",),
                                                   ),
                                     ):SizedBox(height: 0,),
                                     ngoOption? 
@@ -367,14 +384,17 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
                                                       address=address;
                                                     });
                                                   },
-                                                  decoration: textInputDecoration.copyWith(hintText: 'Address'),
+                                                  decoration: textInputDecoration.copyWith(hintText: 'Address').copyWith(                      
+                                    errorText:addressValid?null:"Please enter address",),
                                                   ),
                                     ):SizedBox(height: 0,),
                                      Padding(
                                        padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
                                        child:  ngoOption? DateTimeField(
-                                         decoration: textInputDecoration.copyWith(hintText: "Select event's date"),
+                                         decoration: textInputDecoration.copyWith(hintText: "Select event's date").copyWith(                      
+                                    errorText:dateValid?null:"Please Select the date of event",),
                                         format: format,
+                                        controller: dateController,
                                         onShowPicker: (context, currentValue) async {
                                           final date = await showDatePicker(
                                               context: context,
@@ -405,9 +425,19 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
                                   color: Color(0xff003CAA),
                                   elevation: 5.0,
                                   child:InkWell(
-                                     onTap:saveImagetofirebase,
-                                     
-                                //  onTap: uploadtofirebase,
+                                     onTap:(){
+                                       setState(() {
+                                         addressController.text.trim().isEmpty||address.isEmpty?addressValid=false:addressValid=true;
+                                         descriptionController.text.trim().length<100?descriptionValid=false:descriptionValid=true;
+                                         contactController.text.trim().isEmpty?contactValid=false:contactValid=true;
+                                         titleController.text.trim().isEmpty?titleValid=false:titleValid=true;
+                                         dateController.text.isEmpty?dateValid=false:dateValid=true;
+                                       });
+                                       if(descriptionValid&&titleValid&&!ngoOption||
+                                       (ngoOption && contactValid && addressValid &&dateValid)){
+                                       saveImagetofirebase();
+                                       }
+                                     },
                               child: Center(
                                   child: Text(
                                     'POST',

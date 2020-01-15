@@ -57,7 +57,10 @@ class _NgosState extends State<Ngos> {
                                   description: ngoNotifier.ngoList[index].description,
                                   location: ngoNotifier.ngoList[index].location,
                                   name:ngoNotifier.ngoList[index].name,
-                                  userPic:ngoNotifier.ngoList[index].userPic
+                                  userPic:ngoNotifier.ngoList[index].userPic,
+                                  address:ngoNotifier.ngoList[index].address,
+                                  eventDate:ngoNotifier.ngoList[index].eventDate,
+                                  contact:ngoNotifier.ngoList[index].contact,
                                   ))),
                   child: Row(
                     children: <Widget>[

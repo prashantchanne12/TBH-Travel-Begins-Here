@@ -16,10 +16,13 @@ class _AnonymousState extends State<Anonymous> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text('please login to See profile'),
+                    Text('please login to upload blogs',style:TextStyle(
+                      fontSize: 25
+                    ),),
                     RaisedButton(
+                      color: Colors.red,
                       onPressed:()=> _auth.signOut(),
-                      child: Text('Login'),
+                      child: Text('Login',style: TextStyle(color: Colors.white),),
                     )
                   ],
                 ),

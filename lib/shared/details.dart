@@ -1,3 +1,5 @@
+import 'dart:wasm';
+
 import 'package:flutter/material.dart';
 import 'package:nishant/firebase/food_api.dart';
 import 'package:nishant/firebase/food_notifier.dart';
@@ -13,13 +15,17 @@ class Details extends StatefulWidget {
   final String description;
   final String name;
   final String userPic;
-  Details({this.title,this.ind,this.images, this.location, this.description,this.name,this.userPic});
+  final String address;
+  final String contact;
+  final String eventDate;
+  Details({this.title,this.ind,this.images, this.location, this.description,this.name,this.userPic, this.address, this.contact, this.eventDate});
   @override
   _DetailsState createState() => _DetailsState();
 
 }
 Authentication _auth=Authentication();
 class _DetailsState extends State<Details> {
+  bool ngoDetail=false;
   @override
   void initState() {
     // TODO: implement initState
@@ -63,6 +69,13 @@ class _DetailsState extends State<Details> {
     }
   @override
   Widget build(BuildContext context) {
+    
+    if(!widget.address.isEmpty){
+      ngoDetail=true;
+    }
+    String add=widget.address;
+    String phone=widget.contact;
+    String date=widget.eventDate;
     return Scaffold(
       appBar: header(context,isAppTitle: false,titleText: "Home"),
         body: Container(
@@ -173,6 +186,54 @@ class _DetailsState extends State<Details> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 20,),
+                      ngoDetail?Center(child: Text('Contacts',style: TextStyle(fontSize: 30),)):SizedBox(width: 10,),
+                      ngoDetail?Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          color: Colors.red[50],
+                          elevation: 0.9,
+                          child: Padding(
+                            padding: const EdgeInsets.all(19.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                               Row(
+                                 children: <Widget>[
+                                   Expanded(
+                                     flex: 1,
+                                     child: 
+                                   Icon(Icons.location_on),
+                                   ),
+                                   Expanded(
+                                     flex: 3,
+                                     child: 
+                                     Column(
+                                       children: <Widget>[
+                                         Align(alignment: Alignment.bottomLeft,child: Text(widget.contact,style: TextStyle(fontSize: 20),)),
+                                         Align(alignment: Alignment.bottomLeft,child: Text(widget.address,style: TextStyle(fontSize: 20)),),
+                                       ],
+                                     )
+                                   )
+                                 ],
+                               )
+                                // ButtonBar(
+                                //   children: <Widget>[
+                                //     FlatButton(
+                                //       child: const Text('BUY TICKETS'),
+                                //       onPressed: () { /* ... */ },
+                                //     ),
+                                //     FlatButton(
+                                //       child: const Text('LISTEN'),
+                                //       onPressed: () { /* ... */ },
+                                //     ),
+                                //   ],
+                                // ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ):SizedBox(width: 10,)
                     ],
                   ),
                 ),

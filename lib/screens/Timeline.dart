@@ -60,13 +60,17 @@ class _TimelineState extends State<Timeline> {
                                   description: foodNotifier.foodList[index].description,
                                   location: foodNotifier.foodList[index].location,
                                   name:foodNotifier.foodList[index].name,
-                                  userPic:foodNotifier.foodList[index].userPic
+                                  userPic:foodNotifier.foodList[index].userPic,
+                                  address: '',
                                   ))),
                   child: Row(
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.all(0.0),
                         child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red[50],
+                          ),
                           margin: EdgeInsets.all(16.0),
                           child: Container(
                             height: 70.0,
