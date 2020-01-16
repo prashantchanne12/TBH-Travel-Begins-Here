@@ -70,7 +70,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
                         widget.placeDetails['reviews'][i]['text'],
                         style: TextStyle(
                           fontSize: 18.0,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                           fontFamily: 'Lato',
                         ),
                       ),

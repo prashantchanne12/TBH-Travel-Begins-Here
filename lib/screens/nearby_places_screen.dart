@@ -53,7 +53,6 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(context,titleText: "Nearby"),
         body: places == null
             ? Center(
                 child: SpinKitDualRing(
@@ -67,7 +66,7 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 20, left: 25, bottom: 10),
+                              top: 60, left: 25, bottom: 10),
                           child: Container(
                             alignment: Alignment.topLeft,
                             child: Text(
@@ -86,7 +85,7 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
                           width: 5,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top:10),
+                          padding: EdgeInsets.only(top: 50),
                           child: Icon(
                             Icons.location_on,
                             color: Colors.blue[700],

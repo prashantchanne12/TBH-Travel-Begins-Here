@@ -32,8 +32,8 @@ class _NearbyPlaceDetailsState extends State<NearbyPlaceDetails> {
     var data = await networkHelper.getJson();
     setState(() {
       placeDetails = data['result'];
-      print(placeDetails['reviews'][0]['author_name']);
-      print(placeDetails['reviews'].length);
+//      print(placeDetails['reviews'][0]['author_name']);
+//      print(placeDetails['reviews'].length);
     });
   }
 
