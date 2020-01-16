@@ -11,10 +11,18 @@ header(context,{bool isAppTitle=false,String titleText, removeback=false,bool is
     ),
     ),
     automaticallyImplyLeading: removeback?false:true,
-    backgroundColor:Colors.red,
+    backgroundColor: Colors.pink[600],
+    // LinearGradient(
+    //     begin: Alignment.topLeft,
+    //     end: Alignment.bottomRight,
+    //     colors: [
+    //       Theme.of(context).accentColor,
+    //       Theme.of(context).primaryColor,
+    //     ],
+    //   ),
     actions: <Widget>[
       isLogout?RaisedButton.icon(
-        color: Colors.red,
+        color: Colors.pink,
         onPressed: ()=>_auth.signOut(),
         label: Text('Logout'),
         icon: Icon(Icons.person),

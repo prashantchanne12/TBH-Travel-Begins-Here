@@ -82,6 +82,7 @@ class _EditProfileState extends State<EditProfile> {
               ),
                     Positioned(
                       width: 350.0,
+                      left: MediaQuery.of(context).size.width/12,
                       top: MediaQuery.of(context).size.height/6,
                       child: Column(
                         children: <Widget>[
@@ -94,7 +95,7 @@ class _EditProfileState extends State<EditProfile> {
                                 image: NetworkImage(dp),
                                 fit: BoxFit.cover
                               ),
-                              borderRadius: BorderRadius.circular(0.0),
+                              borderRadius: BorderRadius.circular(75.0),
                               boxShadow:[
                                 BoxShadow(blurRadius: 7.0,color: Colors.pink,spreadRadius: 0)
                               ]
@@ -230,7 +231,7 @@ class getClipper extends CustomClipper<Path>
   {
     var path=new Path();
     path.lineTo(0.0, size.height/2.2);
-    path.lineTo(size.width+224, 0);
+    path.lineTo(size.width+240, 0);
     path.close();
     return path;
   }

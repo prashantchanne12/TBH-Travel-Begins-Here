@@ -73,9 +73,6 @@ class _DetailsState extends State<Details> {
     if(!widget.address.isEmpty){
       ngoDetail=true;
     }
-    String add=widget.address;
-    String phone=widget.contact;
-    String date=widget.eventDate;
     return Scaffold(
       appBar: header(context,isAppTitle: false,titleText: "Home"),
         body: Container(
@@ -187,7 +184,7 @@ class _DetailsState extends State<Details> {
                         ),
                       ),
                       SizedBox(height: 20,),
-                      ngoDetail?Center(child: Text('Contacts',style: TextStyle(fontSize: 30),)):SizedBox(width: 10,),
+                      ngoDetail?Center(child: Text('Contacts',style: TextStyle(fontSize: 25),)):SizedBox(width: 10,),
                       ngoDetail?Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
@@ -212,6 +209,7 @@ class _DetailsState extends State<Details> {
                                        children: <Widget>[
                                          Align(alignment: Alignment.bottomLeft,child: Text(widget.contact,style: TextStyle(fontSize: 20),)),
                                          Align(alignment: Alignment.bottomLeft,child: Text(widget.address,style: TextStyle(fontSize: 20)),),
+                                         Align(alignment: Alignment.bottomLeft,child: Text(widget.eventDate.substring(0,10),style: TextStyle(fontSize: 20)),),
                                        ],
                                      )
                                    )

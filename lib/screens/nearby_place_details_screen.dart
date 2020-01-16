@@ -6,6 +6,8 @@ import 'package:nishant/screens/reviews.dart';
 import 'package:nishant/services/network.dart';
 import 'package:basic_utils/basic_utils.dart';
 
+import '../shared/header.dart';
+
 class NearbyPlaceDetails extends StatefulWidget {
   final place;
   final images;

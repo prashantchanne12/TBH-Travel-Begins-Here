@@ -43,7 +43,7 @@ class _NgosState extends State<Ngos> {
                   ).toList();
                           return  SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
+          padding: const EdgeInsets.only(top: 20.0),
           child: Column(
             children: <Widget>[
               Padding(
@@ -69,15 +69,15 @@ class _NgosState extends State<Ngos> {
                         child: Container(
                           margin: EdgeInsets.all(16.0),
                           child: Container(
-                            height: 70.0,
-                            width: 70.0,
+                            height: 80.0,
+                            width: 80.0,
                             child: ClipRRect(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
                               child: Image.network(
                                       image,
-                                  height: 90,
-                                width: 80,
+                                  height: 100,
+                                width: 100,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -93,9 +93,9 @@ class _NgosState extends State<Ngos> {
                                 ngoNotifier.ngoList[index].title,
                                 style: TextStyle(
                                   fontFamily: 'Lato',
-                                  fontSize: 18.0,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.pink[800],
                                 ),
                               ),
                               Padding(padding: const EdgeInsets.all(2.0)),
@@ -105,7 +105,7 @@ class _NgosState extends State<Ngos> {
                                 style: new TextStyle(
                                     fontFamily: 'Lato',
                                     color: Colors.black,
-                                    fontSize: 13.0),
+                                    fontSize: 16.0),
                               ),
                             ],
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,7 +116,7 @@ class _NgosState extends State<Ngos> {
                   ),
                 ),
               ),
-              Divider(),
+              Divider(color: Colors.pink[40],),
             ],
           ),
         ),

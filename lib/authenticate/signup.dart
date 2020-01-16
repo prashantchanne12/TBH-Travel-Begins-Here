@@ -27,10 +27,10 @@ bool password2Valid=true;
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  image:DecorationImage(
-                    image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkCgdoQ9Qmz3vctd6saYaLhj--6MjY_a1jJas19fYdI432aAl-')
-                  ,fit: BoxFit.fill
-                  ) 
+                  image: DecorationImage(
+                      image: AssetImage('assets/1.jpg'),
+                    fit: BoxFit.cover
+                  ),
                 ),
         child:BackdropFilter(
           filter: ImageFilter.blur(sigmaX:5.0, sigmaY:5.0),
@@ -67,11 +67,30 @@ return Container(
             borderRadius: BorderRadius.all(Radius.circular(40)),
             color: Colors.white
           ),
-          child: Form(
-                      child: Column(
+          child: SingleChildScrollView(
+              child:Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(height: 90,),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: TextField(
+                    style: TextStyle(color: Colors.black),
+                    controller: password2Controller,
+                    decoration: InputDecoration(
+                      hintText: "Enter Name",
+                      errorText:password2Valid?null:"Please Enter Name",
+                      hintStyle: TextStyle(color: Colors.black),
+                      border: InputBorder.none,
+                      icon: Icon(Icons.person,color: Colors.pink,)
+                    ),
+                    onChanged: (val)=>name=val,
+                  ),
+                ),
+                Container(
+                  child: Divider(color: Colors.pink.shade400,),
+                  padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
+                ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
@@ -82,13 +101,13 @@ return Container(
                       hintStyle: TextStyle(color: Colors.black),
                       border: InputBorder.none,
                       errorText: emailValid?null:"Email should not be null",
-                      icon: Icon(Icons.email,color: Colors.red,)
+                      icon: Icon(Icons.email,color: Colors.pink,)
                     ),
                     onChanged: (val)=>email=val,
                   ),
                 ),
                 Container(
-                  child: Divider(color: Colors.red.shade400,),
+                  child: Divider(color: Colors.pink.shade400,),
                   padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
                 ),
                 Container(
@@ -102,33 +121,14 @@ return Container(
                       errorText: passwordValid?null:"password must be greater than 6 characters",
                       hintStyle: TextStyle(color: Colors.black),
                       border: InputBorder.none,
-                      icon: Icon(Icons.lock,color: Colors.red,)
+                      icon: Icon(Icons.lock,color: Colors.pink,)
                     ),
                   onChanged: (val)=>password=val,
                   ),
                 ),
-                Container(
-                  child: Divider(color: Colors.red.shade400,),
-                  padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: TextField(
-                    style: TextStyle(color: Colors.black),
-                    controller: password2Controller,
-                    decoration: InputDecoration(
-                      hintText: "Enter Name",
-                      errorText:password2Valid?null:"Please Enter Name",
-                      hintStyle: TextStyle(color: Colors.black),
-                      border: InputBorder.none,
-                      icon: Icon(Icons.lock,color: Colors.red,)
-                    ),
-                    onChanged: (val)=>name=val,
-                  ),
-                ),
                 
                 Container(
-                  child: Divider(color: Colors.red.shade400,),
+                  child: Divider(color: Colors.pink.shade400,),
                   padding: EdgeInsets.only(left: 20,right: 20,bottom: 10),
                 ),
                 SizedBox(height: 10,),
@@ -140,7 +140,7 @@ return Container(
                         alignment: Alignment.center,
                         child: RaisedButton(
                           onPressed: toggleView,
-                          color: Colors.red,
+                          color: Colors.pink,
                           child: Padding(
                             padding: const EdgeInsets.only(left:30,right: 30,top: 10,bottom: 10),
                             child: Text('Login',style: TextStyle(color: Colors.white),),
@@ -170,7 +170,7 @@ return Container(
                                 }
                             }
                           },
-                          color: Colors.red,
+                          color: Colors.pink,
                           child: Padding(
                             padding: const EdgeInsets.only(left:30,right: 30,top: 10,bottom: 10),
                             child: Text('Register',style: TextStyle(color: Colors.white),),
@@ -181,7 +181,7 @@ return Container(
                 ),
                 SizedBox(height: 30,),
                 Center(child: Text(err,
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Colors.pink),
                 ),)
               ],
             ),
@@ -195,7 +195,9 @@ return Container(
             radius: 40,
             backgroundColor: Colors.blue.shade600,
             child: Image(
-              image: NetworkImage('https://www.logolynx.com/images/logolynx/15/1588b3eef9f1607d259c3f334b85ffd1.png'),
+              image:AssetImage(
+                'assets/authenticate.png'
+              ) ,
             ),
           )
         ],

@@ -27,12 +27,12 @@ class _LoginState extends State<Login> {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTkCgdoQ9Qmz3vctd6saYaLhj--6MjY_a1jJas19fYdI432aAl-'),
-                      fit: BoxFit.fill),
+                      image: AssetImage('assets/1.jpg'),
+                    fit: BoxFit.cover
+                  ),
                 ),
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                  filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
                   child: new Container(
                     decoration:
                         new BoxDecoration(color: Colors.white.withOpacity(0.0)),
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(40)),
-                    color: Colors.white),
+                    color: Colors.white.withOpacity(1)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -87,14 +87,14 @@ class _LoginState extends State<Login> {
                             border: InputBorder.none,
                             icon: Icon(
                               Icons.email,
-                              color: Colors.red,
+                              color: Colors.pink,
                             )),
                         onChanged: (val) => email = val,
                       ),
                     ),
                     Container(
                       child: Divider(
-                        color: Colors.red.shade400,
+                        color: Colors.pink.shade400,
                       ),
                       padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     ),
@@ -109,14 +109,14 @@ class _LoginState extends State<Login> {
                             border: InputBorder.none,
                             icon: Icon(
                               Icons.lock,
-                              color: Colors.red,
+                              color: Colors.pink,
                             )),
                         onChanged: (val) => password = val,
                       ),
                     ),
                     Container(
                       child: Divider(
-                        color: Colors.red.shade400,
+                        color: Colors.pink.shade400,
                       ),
                       padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
                     ),
@@ -145,7 +145,7 @@ class _LoginState extends State<Login> {
                                     }
                                   }
                                 },
-                                color: Colors.red,
+                                color: Colors.pink,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 30, right: 30, top: 10, bottom: 10),
@@ -161,7 +161,7 @@ class _LoginState extends State<Login> {
                             alignment: Alignment.center,
                             child: RaisedButton(
                                 onPressed: toggleView,
-                                color: Colors.red,
+                                color: Colors.pink,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 30, right: 30, top: 10, bottom: 10),
@@ -195,7 +195,7 @@ class _LoginState extends State<Login> {
                             onPressed: () async {
                               dynamic result = await _auth.signInAnon();
                             },
-                            color: Colors.red,
+                            color: Colors.pink,
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   left: 30, right: 30, top: 10, bottom: 10),
@@ -209,7 +209,7 @@ class _LoginState extends State<Login> {
                     Center(
                       child: Text(
                         err,
-                        style: TextStyle(color: Colors.red),
+                        style: TextStyle(color: Colors.pink),
                       ),
                     )
                   ],
@@ -222,7 +222,7 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               CircleAvatar(
                 radius: 40,
-                backgroundColor: Colors.red.shade600,
+                backgroundColor: Colors.pink.shade600,
                 child: Image(
                   image: NetworkImage(
                       'https://www.logolynx.com/images/logolynx/15/1588b3eef9f1607d259c3f334b85ffd1.png'),

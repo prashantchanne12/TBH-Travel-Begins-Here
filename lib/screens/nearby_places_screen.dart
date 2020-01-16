@@ -6,6 +6,8 @@ import 'package:nishant/constants.dart';
 import 'package:nishant/screens/nearby_place_details_screen.dart';
 import 'package:nishant/services/network.dart';
 
+import '../shared/header.dart';
+
 class NearbyPlacesScreen extends StatefulWidget {
   @override
   _NearbyPlacesScreenState createState() => _NearbyPlacesScreenState();
@@ -51,6 +53,7 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: header(context,titleText: "Nearby"),
         body: places == null
             ? Center(
                 child: SpinKitDualRing(
@@ -64,7 +67,7 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 70, left: 25, bottom: 10),
+                              top: 20, left: 25, bottom: 10),
                           child: Container(
                             alignment: Alignment.topLeft,
                             child: Text(
@@ -83,7 +86,7 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
                           width: 5,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 60),
+                          padding: EdgeInsets.only(top:10),
                           child: Icon(
                             Icons.location_on,
                             color: Colors.blue[700],

@@ -68,12 +68,14 @@ class _HomeState extends State<Home> {
     return StreamProvider<List<Details>>.value(
       value: DatabaseServices().details,
       child: Scaffold(
+
         body: PageView(
           children: <Widget>[
             Timeline(),
             Ngos(),
             anonymous ? Anonymous() : Upload(),
-            NearbyPlacesScreen(),
+            Text('nearby'),
+            // NearbyPlacesScreen(),
             EditProfile(),
           ],
           controller: pageController,
@@ -96,7 +98,6 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Icon(
               Icons.photo_camera,
-              size: 50,
             )),
             BottomNavigationBarItem(
                 icon: Icon(

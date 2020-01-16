@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:nishant/firebase/food_api.dart';
 import 'package:nishant/firebase/food_notifier.dart';
-import 'package:nishant/modal/User.dart';
 import 'package:nishant/services/authentication.dart';
 import 'package:nishant/shared/details.dart';
-import 'package:nishant/shared/drewer.dart';
 import 'package:nishant/shared/header.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +30,7 @@ class _TimelineState extends State<Timeline> {
       getFoods(foodNotifier);
     }
      return Scaffold(
-      appBar: header(context,isAppTitle: false,titleText: "Home",isLogout: true),
+      appBar: header(context,isAppTitle: false,titleText: "Home"),
       body:new RefreshIndicator(
         child:ListView.builder(
                 itemCount: foodNotifier.foodList.length,
@@ -73,8 +70,8 @@ class _TimelineState extends State<Timeline> {
                           ),
                           margin: EdgeInsets.all(16.0),
                           child: Container(
-                            height: 70.0,
-                            width: 70.0,
+                            height: 80.0,
+                            width: 80.0,
                             child: ClipRRect(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
@@ -97,9 +94,9 @@ class _TimelineState extends State<Timeline> {
                                 foodNotifier.foodList[index].title,
                                 style: TextStyle(
                                   fontFamily: 'Lato',
-                                  fontSize: 18.0,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.pink[800],
                                 ),
                               ),
                               Padding(padding: const EdgeInsets.all(2.0)),
@@ -109,7 +106,7 @@ class _TimelineState extends State<Timeline> {
                                 style: new TextStyle(
                                     fontFamily: 'Lato',
                                     color: Colors.black,
-                                    fontSize: 13.0),
+                                    fontSize: 16.0),
                               ),
                             ],
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,7 +117,7 @@ class _TimelineState extends State<Timeline> {
                   ),
                 ),
               ),
-              Divider(),
+              Divider(color: Colors.black,),
             ],
           ),
         ),

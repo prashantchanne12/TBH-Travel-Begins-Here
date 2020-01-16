@@ -417,12 +417,12 @@ databaseReference.collection("posts").document(currentUser.uid).collection("user
                               SizedBox(height: 10,),
                               Container(
                                 height: 50.0,
-                                width: 350.0,
+                                width: 300.0,
                                 child: Material(
                                   
                                   borderRadius: BorderRadius.circular(20.0),
-                                  shadowColor: Color(0xff005AFE),
-                                  color: Color(0xff003CAA),
+                                  shadowColor: Colors.pinkAccent,
+                                  color:Colors.pink[600],
                                   elevation: 5.0,
                                   child:InkWell(
                                      onTap:(){
