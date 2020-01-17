@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -5,8 +7,8 @@ import 'package:nishant/constants.dart';
 import 'package:nishant/screens/reviews.dart';
 import 'package:nishant/services/network.dart';
 import 'package:basic_utils/basic_utils.dart';
-
-import '../shared/header.dart';
+import 'package:solid_bottom_sheet/solid_bottom_sheet.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
 
 class NearbyPlaceDetails extends StatefulWidget {
   final place;
@@ -48,10 +50,53 @@ class _NearbyPlaceDetailsState extends State<NearbyPlaceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: SolidBottomSheet(
+        body: Visibility(
+          visible: placeDetails == null ? false : true,
+          child: SingleChildScrollView(
+            child: Card(
+              elevation: 0.5,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(
+                        top: 25.0, left: 20.0, right: 20.0, bottom: 20.0),
+                    child: Text(
+                      'The Gateway of India is an arch-monument built in the early twentieth century in the city of Mumbai, in the Indian state of Maharashtra. It was erected to commemorate the landing in December 1911 at Apollo Bunder, Mumbai (then Bombay) of King-Emperor George V and Queen-Empress Mary, the first British monarch to visit India. At the time of the royal visit, the gateway was not yet built, and a cardboard structure greeted the monarch. The foundation stone was laid in March 1913 for a monument built in the Indo-Saracenic style, incorporating elements of 16th-century Marathi architecture. The final design of the monument by architect George Wittet was sanctioned only in 1914, and construction was completed in 1924. The structure is a triumphal arch made of basalt, which is 26 metres (85 feet) high.',
+                      style: TextStyle(
+                        fontFamily: 'Lato',
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w500,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        headerBar: Container(
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+          child: Center(
+            child: Text(
+              'History & Facts',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Lato',
+              ),
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: placeDetails == null
           ? Center(
-              child: SpinKitRing(
+              child: SpinKitPulse(
                 color: Colors.blue,
               ),
             )
@@ -357,6 +402,9 @@ class _NearbyPlaceDetailsState extends State<NearbyPlaceDetails> {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: 40.0,
                     ),
                   ],
                 ),

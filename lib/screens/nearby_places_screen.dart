@@ -16,9 +16,22 @@ class NearbyPlacesScreen extends StatefulWidget {
 class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
   var places = [];
 
+  bool loading = true;
+
+  loader() {
+    if (places.isEmpty) {
+      Center(
+        child: SpinKitDualRing(
+          color: Colors.pinkAccent,
+        ),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    loader();
     getPlacesData();
   }
 
@@ -29,6 +42,7 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
       places.addAll(data['results']);
     });
     getImageData();
+    loader();
   }
 
   List<String> newImages = [];
@@ -36,13 +50,12 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
     List<String> images = [];
     for (int i = 0; i < places.length; i++) {
       NetworkHelper networkHelper = NetworkHelper(
-          'https://api.unsplash.com/search/photos?per_page=1&client_id=8488e853780ea3ad56499853e464b82b3b477cb3fde46477dae84bbb2c4b6d29&query=${places[i]['name']}');
+          'https://api.unsplash.com/search/photos?per_page=1&client_id=$kImageApiKey&query=${places[i]['name']}');
       var data = await networkHelper.getJson();
       if (data['total'] != 0) {
         images.add(data['results'][0]['urls']['regular']);
       } else {
-        images.add(
-            'https://images.unsplash.com/photo-1540750605116-db8607687576?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60');
+        images.add(kDefaultImage);
       }
     }
     setState(() {
@@ -53,9 +66,9 @@ class _NearbyPlacesScreenState extends State<NearbyPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: places == null
+        body: places.isEmpty
             ? Center(
-                child: SpinKitDualRing(
+                child: SpinKitDoubleBounce(
                   color: Colors.blue,
                 ),
               )

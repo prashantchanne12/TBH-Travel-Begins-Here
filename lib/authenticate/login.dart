@@ -27,9 +27,7 @@ class _LoginState extends State<Login> {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/1.jpg'),
-                    fit: BoxFit.cover
-                  ),
+                      image: AssetImage('assets/1.jpg'), fit: BoxFit.cover),
                 ),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
