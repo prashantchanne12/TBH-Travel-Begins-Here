@@ -9,9 +9,17 @@ Every part of our country is very rich in its heritage and culture. However, awa
 
 <img src="https://github.com/prashantchanne12/TBH-Travel-Begins-Here-/blob/master/test/ss1.png" alt="image 1" width="300">
 <img src="https://github.com/prashantchanne12/TBH-Travel-Begins-Here-/blob/master/test/ss2.png" alt="image 1" width="300">
-<img src="https://github.com/prashantchanne12/TBH-Travel-Begins-Here-/blob/master/test/ss3.png" alt="image 1" width="300">
 <img src="https://github.com/prashantchanne12/TBH-Travel-Begins-Here-/blob/master/test/ss4.png" alt="image 1" width="300">
 <img src="https://github.com/prashantchanne12/TBH-Travel-Begins-Here-/blob/master/test/ss5.png" alt="image 1" width="300">
+
+![GitHub Logo](https://github.com/121loganpaul/images/blob/master/TBH.gif?raw=true)
+
+----
+
+## Team
+@mrpandey1
+@gaurangkeluskar22
+@Bhavartha
 
 
 
